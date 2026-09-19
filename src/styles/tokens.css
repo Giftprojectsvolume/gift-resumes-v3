@@ -1,0 +1,32 @@
+:root {
+  /* Color */
+  --ink: #1e2a3a;
+  --ink-soft: #4b5768;
+  --paper: #f1efe7;
+  --paper-raised: #ffffff;
+  --accent: #b8862e;
+  --accent-ink: #4a3413;
+  --success: #2f6f62;
+  --error: #b3453a;
+  --border: #dad6c9;
+
+  /* Type */
+  --font-display: 'Space Grotesk', system-ui, sans-serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+
+  /* Spacing scale */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+
+  /* Radius */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+
+  /* Content width — mobile-first, this is the ceiling not the floor */
+  --content-max: 480px;
+}
