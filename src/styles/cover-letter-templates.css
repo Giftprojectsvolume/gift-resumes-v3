@@ -1,0 +1,99 @@
+.cl-page {
+  width: 794px;
+  min-height: 1123px;
+  background: #ffffff;
+  color: #1a1a1a;
+  padding: 64px 70px;
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  box-sizing: border-box;
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+.cl-header {
+  margin-bottom: 24px;
+}
+
+.cl-sender-name {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.cl-sender-contact {
+  font-size: 13px;
+  color: #444;
+  margin-top: 2px;
+}
+
+.cl-date {
+  font-size: 13px;
+  color: #555;
+  margin-bottom: 24px;
+}
+
+.cl-body {
+  white-space: pre-wrap;
+  font-size: 14px;
+  color: #222;
+}
+
+@media print {
+  @page {
+    size: A4;
+    margin: 0;
+  }
+  .cl-page {
+    box-shadow: none;
+  }
+}
+
+.print-only-cl {
+  display: none;
+}
+
+@media print {
+  .print-only-cl {
+    display: block;
+  }
+}
+
+/* ---- Template skins ---- */
+
+.cl-tpl-general-professional .cl-sender-name {
+  color: #1e2a3a;
+}
+.cl-tpl-general-professional .cl-date {
+  color: #4b5768;
+}
+
+.cl-tpl-entry-level {
+  font-size: 14.5px;
+}
+.cl-tpl-entry-level .cl-sender-name {
+  color: #2f6f62;
+}
+
+.cl-tpl-career-change .cl-sender-name {
+  color: #b8862e;
+}
+.cl-tpl-career-change .cl-header {
+  border-bottom: 2px solid #b8862e;
+  padding-bottom: 12px;
+}
+
+.cl-tpl-professional-application {
+  font-family: Arial, Helvetica, sans-serif;
+}
+.cl-tpl-professional-application .cl-sender-name {
+  color: #000;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+/* ---- Swatch previews used by the template picker ---- */
+.swatch-preview.cl-tpl-general-professional { background: #fff; border-color: #1e2a3a; }
+.swatch-preview.cl-tpl-entry-level { background: #fff; border-color: #2f6f62; }
+.swatch-preview.cl-tpl-career-change { background: #fff; border-color: #b8862e; }
+.swatch-preview.cl-tpl-professional-application { background: #fff; border-color: #000; }
