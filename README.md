@@ -1,21 +1,40 @@
-# Gift Resumes — Frontend
+# Gift Resumes
+
+South African CV and cover letter builder.
+
+Live: https://gift-resumes-v3.vercel.app
 
 ## Setup
 
-1. Run the six SQL migration files (schema → pricing → cost rates → auth trigger → dashboard functions → template slugs) in your Supabase project's SQL editor, if you haven't already.
-2. `npm install`
-3. Copy `.env.example` to `.env` and fill in your Supabase project URL and anon key (found in Supabase → Project Settings → API).
-4. `npm run dev` and open the local URL it prints.
+Stack: React + Vite, deployed on Vercel, with Supabase (Postgres, Auth, Edge Functions).
+
+1. Install packages: `npm install`
+2. Copy `.env.example` to `.env` and fill in:
+   - `VITE_SUPABASE_URL`
+   - `VITE_SUPABASE_ANON_KEY`
+   - `VITE_PAYSTACK_PUBLIC_KEY`
+3. Run locally: `npm run dev`
+4. Build: `npm run build`
+
+Pushing to `main` deploys automatically on Vercel.
 
 ## What's built so far
 
-- Sign up (`/signup`) and sign in (`/login`), backed by Supabase Auth
-- Dashboard: plan status, My CVs (create/edit/preview/duplicate/delete), My Cover Letters (placeholder), My Purchases, Account/Help
-- CV Editor: 8 sections (Personal Info, Summary, Work Experience, Education, Skills, Certifications, Languages, References) with autosave, add/edit/delete/reorder
-- Template selection + live A4 preview across 4 templates (Clean Professional, ATS Friendly, Modern Professional, Entry Level)
-- Client-side PDF via browser print — same renderer as the preview, real selectable text
+- Signup and login
+- CV editor with all 8 sections, autosave, reorder and duplicate
+- 4 CV templates, live preview and PDF download
+- Cover letter editor with 4 templates, preview and PDF
+- ATS / readability check
+- Import existing CV (PDF or Word) via the `import-cv` Edge Function
+- AI wording improvement via the `improve-wording` Edge Function
+- Pricing page, loaded from the products table
+- Paystack payments (test mode)
+- Job Leads: browse, detail page, report a job
+- Admin Dashboard: users, purchases, revenue, job moderation, reports
+- Account page and Help page
 
 ## Notes
 
-- Supabase's default setting requires email confirmation before a new account can log in. Toggle in Supabase → Authentication → Providers → Email if you want to skip that for testing.
-- The `handle_new_user` trigger (from the SQL migrations) must be run, or new sign-ups will have no matching row in `profiles`.
+- Paystack is still in test mode, pending approval for live payments.
+- Edge Function secrets (Paystack, Anthropic, Supabase service role) are set in Supabase, never in this repo.
+- Planned for later: CV photo scanner, public employer job submission, in-app featured job payments, Annual Career Plan billing, forgot password.
