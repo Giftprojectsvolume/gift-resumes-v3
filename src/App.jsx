@@ -1,0 +1,148 @@
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
+import { AuthProvider, useAuth } from './context/AuthContext'
+import Login from './pages/Login'
+import Signup from './pages/Signup'
+import ForgotPassword from './pages/ForgotPassword'
+import ResetPassword from './pages/ResetPassword'
+import Dashboard from './pages/Dashboard'
+import NewCV from './pages/NewCV'
+import CVEditor from './pages/CVEditor'
+import CVPreview from './pages/CVPreview'
+import CoverLetterEditor from './pages/CoverLetterEditor'
+import CoverLetterPreview from './pages/CoverLetterPreview'
+import ATSCheck from './pages/ATSCheck'
+import Pricing from './pages/Pricing'
+import AdminDashboard from './pages/AdminDashboard'
+import Account from './pages/Account'
+import Help from './pages/Help'
+import JobLeads from './pages/JobLeads'
+import JobLeadDetail from './pages/JobLeadDetail'
+import './styles/tokens.css'
+import './styles/global.css'
+
+function RequireAuth({ children }) {
+  const { session, loading } = useAuth()
+  if (loading) return <div style={{ padding: 24 }}>Loading…</div>
+  if (!session) return <Navigate to="/login" replace />
+  return children
+}
+
+export default function App() {
+  return (
+    <AuthProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/forgot-password" element={<ForgotPassword />} />
+          <Route path="/reset-password" element={<ResetPassword />} />
+          <Route
+            path="/dashboard"
+            element={
+              <RequireAuth>
+                <Dashboard />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="/new-cv"
+            element={
+              <RequireAuth>
+                <NewCV />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="/resume/:id/edit"
+            element={
+              <RequireAuth>
+                <CVEditor />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="/resume/:id/preview"
+            element={
+              <RequireAuth>
+                <CVPreview />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="/cover-letter/:id/edit"
+            element={
+              <RequireAuth>
+                <CoverLetterEditor />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="/cover-letter/:id/preview"
+            element={
+              <RequireAuth>
+                <CoverLetterPreview />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="/resume/:id/ats-check"
+            element={
+              <RequireAuth>
+                <ATSCheck />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="/pricing"
+            element={
+              <RequireAuth>
+                <Pricing />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="/admin"
+            element={
+              <RequireAuth>
+                <AdminDashboard />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="/account"
+            element={
+              <RequireAuth>
+                <Account />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="/help"
+            element={
+              <RequireAuth>
+                <Help />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="/jobs"
+            element={
+              <RequireAuth>
+                <JobLeads />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="/jobs/:id"
+            element={
+              <RequireAuth>
+                <JobLeadDetail />
+              </RequireAuth>
+            }
+          />
+          <Route path="*" element={<Navigate to="/login" replace />} />
+        </Routes>
+      </BrowserRouter>
+    </AuthProvider>
+  )
+          }
